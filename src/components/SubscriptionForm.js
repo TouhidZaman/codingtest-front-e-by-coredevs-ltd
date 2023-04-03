@@ -21,8 +21,9 @@ export default function SubscriptionForm() {
       body: JSON.stringify({ email })
     }).then(res => res.text())
       .then(data => JSON.parse(`${data}`))
-      .then(data => hitToast(data.message, data.success ? 'success' : 'error'))
-      .catch(() => hitToast('Something went wrong. Please try again.', 'error'))
+      //function call parameter order adjusted with hitToast function
+      .then(data => hitToast(data.success ? 'success' : 'error', data.message))
+      .catch(() => hitToast('error', 'Something went wrong. Please try again.'))
 
     setAlertClass('');
   }
